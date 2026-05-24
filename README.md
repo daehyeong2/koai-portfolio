@@ -12,7 +12,9 @@ python3 -m http.server 4173
 
 ## 배포
 
-이 저장소를 GitHub에 올린 뒤 Settings → Pages에서 배포 브랜치를 선택하세요. 빌드 과정은 필요하지 않습니다.
+이 저장소를 GitHub에 올린 뒤 Settings → Pages → Build and deployment에서 Source를 `GitHub Actions`로 선택하세요.
+
+`main` 또는 `master` 브랜치에 push하면 `.github/workflows/pages.yml`이 정적 파일을 GitHub Pages에 배포합니다. 빌드 과정은 필요하지 않습니다.
 
 ## PDF 교체
 
