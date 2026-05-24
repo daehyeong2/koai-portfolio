@@ -1,0 +1,335 @@
+:root {
+  color-scheme: light;
+  --bar-height: 72px;
+  --ink: #162022;
+  --muted: #5b666a;
+  --line: #d7dde0;
+  --paper: #ffffff;
+  --surface: #f4f1ea;
+  --accent: #0f766e;
+  --accent-strong: #0b5f59;
+  --danger: #b42318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(15, 118, 110, 0.08), transparent 220px),
+    var(--surface);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+.app-bar {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bar-height);
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(150px, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.identity {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.identity strong {
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identity span,
+.viewer-status {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 44px;
+}
+
+.icon-button,
+.text-button,
+.page-control {
+  height: 36px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 1px 0 rgba(22, 32, 34, 0.04);
+}
+
+.icon-button,
+.text-button {
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  transition:
+    border-color 120ms ease,
+    background 120ms ease,
+    color 120ms ease,
+    transform 120ms ease;
+}
+
+.icon-button {
+  width: 36px;
+  border-radius: 8px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.text-button {
+  min-width: 52px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.icon-button:hover,
+.text-button:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.primary:hover {
+  background: var(--accent-strong);
+  color: white;
+}
+
+.icon-button:active,
+.text-button:active {
+  transform: translateY(1px);
+}
+
+.icon-button:focus-visible,
+.text-button:focus-visible,
+.page-control:focus-within,
+#viewerContainer:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.24);
+  outline-offset: 2px;
+}
+
+.page-control {
+  display: grid;
+  grid-template-columns: 54px auto;
+  align-items: center;
+  min-width: 104px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.page-control input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  text-align: right;
+}
+
+.page-control span {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--line);
+}
+
+.viewer-status {
+  justify-self: end;
+  display: grid;
+  gap: 2px;
+  text-align: right;
+}
+
+.progress {
+  position: fixed;
+  z-index: 30;
+  top: var(--bar-height);
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+}
+
+#progressBar {
+  width: 0;
+  height: 100%;
+  background: var(--accent);
+  transition: width 140ms ease, opacity 180ms ease;
+}
+
+#viewerContainer {
+  position: absolute;
+  inset: var(--bar-height) 0 0 0;
+  overflow: auto;
+  padding: 22px 0 40px;
+  scroll-behavior: smooth;
+}
+
+#viewer {
+  min-width: min-content;
+}
+
+.pdfViewer .page {
+  margin: 0 auto 22px;
+  border: 0;
+  border-radius: 3px;
+  box-shadow: 0 18px 50px rgba(22, 32, 34, 0.18);
+}
+
+.pdfViewer .page canvas {
+  border-radius: 3px;
+}
+
+.annotationLayer .linkAnnotation > a {
+  border-radius: 3px;
+}
+
+.annotationLayer .linkAnnotation > a:hover {
+  background: rgba(15, 118, 110, 0.12);
+  box-shadow: inset 0 0 0 2px rgba(15, 118, 110, 0.48);
+}
+
+.media-overlay {
+  position: absolute;
+  z-index: 4;
+  display: block;
+  object-fit: cover;
+  pointer-events: auto;
+}
+
+.message {
+  position: fixed;
+  z-index: 40;
+  left: 50%;
+  bottom: 22px;
+  max-width: min(520px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  padding: 12px 14px;
+  border: 1px solid rgba(180, 35, 24, 0.28);
+  border-radius: 8px;
+  background: #fff7f6;
+  color: var(--danger);
+  box-shadow: 0 16px 40px rgba(22, 32, 34, 0.18);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.message a {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.noscript {
+  display: block;
+}
+
+@media (max-width: 820px) {
+  :root {
+    --bar-height: 96px;
+  }
+
+  .app-bar {
+    grid-template-columns: 1fr;
+    grid-template-rows: 34px 44px;
+    gap: 4px;
+    padding: 8px 12px;
+  }
+
+  .identity {
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .identity strong {
+    font-size: 15px;
+  }
+
+  .toolbar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+  }
+
+  .viewer-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    max-width: 44%;
+  }
+
+  .viewer-status span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #viewerContainer {
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .identity span,
+  .viewer-status {
+    display: none;
+  }
+
+  .text-button {
+    min-width: 46px;
+    padding: 0 10px;
+  }
+
+  .page-control {
+    min-width: 94px;
+    grid-template-columns: 46px auto;
+  }
+}

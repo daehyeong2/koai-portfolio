@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static GitHub Pages viewer for Kwon Daehyeong's KOAI portfolio.",
+  "scripts": {
+    "start": "python3 -m http.server 4173"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^5.7.284"
+  }
+}

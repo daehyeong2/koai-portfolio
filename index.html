@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="권대형 KOAI 포트폴리오 PDF 웹 뷰어">
+    <title>권대형 | KOAI Portfolio</title>
+    <link rel="icon" href="data:,">
+    <link rel="preload" href="./assets/portfolio.pdf" as="fetch" type="application/pdf" crossorigin>
+    <link rel="stylesheet" href="./assets/pdfjs/pdf_viewer.css">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-bar">
+      <div class="identity" aria-label="포트폴리오 정보">
+        <strong>권대형</strong>
+        <span>KOAI Portfolio</span>
+      </div>
+
+      <nav class="toolbar" aria-label="PDF 보기 도구">
+        <button class="icon-button" id="prevPage" type="button" title="이전 페이지" aria-label="이전 페이지">‹</button>
+        <label class="page-control" aria-label="현재 페이지">
+          <input id="pageNumber" type="number" min="1" value="1" inputmode="numeric">
+          <span id="pageCount">/ --</span>
+        </label>
+        <button class="icon-button" id="nextPage" type="button" title="다음 페이지" aria-label="다음 페이지">›</button>
+
+        <span class="divider" aria-hidden="true"></span>
+
+        <button class="icon-button" id="zoomOut" type="button" title="축소" aria-label="축소">−</button>
+        <button class="text-button" id="fitHeight" type="button" title="세로에 맞춤">맞춤</button>
+        <button class="icon-button" id="zoomIn" type="button" title="확대" aria-label="확대">+</button>
+
+        <span class="divider" aria-hidden="true"></span>
+
+        <a class="text-button" id="openPdf" href="./assets/portfolio.pdf" target="_blank" rel="noopener noreferrer">원본</a>
+        <a class="text-button primary" id="downloadPdf" href="./assets/portfolio.pdf" download="Kwon-Daehyeong-KOAI-Portfolio.pdf">PDF</a>
+      </nav>
+
+      <div class="viewer-status" aria-live="polite">
+        <span id="statusText">불러오는 중</span>
+      </div>
+    </header>
+
+    <div class="progress" aria-hidden="true">
+      <div id="progressBar"></div>
+    </div>
+
+    <div id="viewerContainer" role="main" tabindex="0" aria-label="권대형 KOAI 포트폴리오 PDF">
+      <div id="viewer" class="pdfViewer"></div>
+    </div>
+
+    <div id="message" class="message" role="status" hidden></div>
+
+    <noscript>
+      <p class="message noscript">
+        JavaScript가 꺼져 있어 웹 뷰어를 실행할 수 없습니다.
+        <a href="./assets/portfolio.pdf">PDF 원본</a>을 열어 확인해 주세요.
+      </p>
+    </noscript>
+
+    <script type="module" src="./viewer.js"></script>
+  </body>
+</html>
